@@ -51,8 +51,8 @@ public class InvadersGriid : MonoBehaviour
             else if (_direction == Vector3.left && invaders.position.x <= (leftBorderPosition.x + 3.0f)) MoveGrid();
         }
         
-        Debug.Log(percentKilled);
-        Debug.Log(amountAlive);
+        Debug.Log(PlayerPrefs.GetInt("TopScore"));
+        Debug.Log(Score.scoreValue);
     }
 
     private void MoveGrid()
@@ -65,7 +65,6 @@ public class InvadersGriid : MonoBehaviour
 
     private void killInvader()
     {
-        //GAME OVER
         amountKilled++;
 
         if (amountKilled >= totalInvaders)
