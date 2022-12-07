@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MisteryShip
+  - Invader_5
+  - Invader_3
+  - Invader_2
+  - Invader_1
+  - Invader_4
+  - Invader_6
+  - Invader_7
+  - Invader_8
+  - Invader_9
+  - Invader_10
+  - BottomBorder
   layers:
   - Default
   - TransparentFX
@@ -14,7 +26,7 @@ TagManager:
   - Invader
   - Laser
   - Missile
-  - 
+  - BottomBorder
   - 
   - 
   - 

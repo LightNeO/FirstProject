@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128304860709235802, guid: f724a5f0b8e20cd4880a00bd54d8dd32, type: 3}
       propertyPath: m_TagString
-      value: Invader_8
+      value: Invader_7
       objectReference: {fileID: 0}
     - target: {fileID: 5393062777399902840, guid: f724a5f0b8e20cd4880a00bd54d8dd32, type: 3}
       propertyPath: m_Size.x

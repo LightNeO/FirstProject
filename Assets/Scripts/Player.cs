@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public Sprite[] playerSprites;
     private int frameNumber;
     private SpriteRenderer _spriteRenderer;
-    private bool isDead = false;
+    public static bool isDead = false;
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         }
         MovePlayer();
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.Space))
         {
             Shoot();
             buttonsPrefabs[0].gameObject.SetActive(false);
@@ -46,6 +46,11 @@ public class Player : MonoBehaviour
         {
             buttonsPrefabs[0].gameObject.SetActive(true);
             buttonsPrefabs[1].gameObject.SetActive(false);
+        }
+
+        if (isDead)
+        {
+            killPlayer();
         }
     }
 
@@ -92,7 +97,7 @@ public class Player : MonoBehaviour
         _laserActive = false;
     }
 
-    private void killPlayer()
+    private void hitPlayer()
     {
         if (lives == 3)
         {
@@ -106,17 +111,22 @@ public class Player : MonoBehaviour
         }
         else if (lives == 1)
         {
-            lives--;
-            livesPrefabs[0].SetActive(false);
-
-            frameNumber = 1;
-
-            _spriteRenderer.sprite = playerSprites[frameNumber];
-
-            speed = 0;
-            isDead = true;
-            Time.timeScale = 0;
+            killPlayer();
         }
+    }
+
+    private void killPlayer()
+    {
+        lives = 0;
+        livesPrefabs[0].SetActive(false);
+
+        frameNumber = 1;
+
+        _spriteRenderer.sprite = playerSprites[frameNumber];
+
+        speed = 0;
+        isDead = true;
+        Time.timeScale = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -124,7 +134,7 @@ public class Player : MonoBehaviour
         //GAMEOVER
         if (collision.gameObject.layer == LayerMask.NameToLayer("Invader") || collision.gameObject.layer == LayerMask.NameToLayer("Missile"))
         {
-            killPlayer();
+            hitPlayer();
         }
     }
 }

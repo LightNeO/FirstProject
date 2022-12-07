@@ -39,7 +39,7 @@ public class InvadersGriid : MonoBehaviour
 
     private void Update()
     {
-        speed = new AnimationCurve(new Keyframe(0, 1 * speedMultiplier), new Keyframe(0.25f, 3 * speedMultiplier), new Keyframe(0.5f, 5 * speedMultiplier), new Keyframe(0.75f, 7 * speedMultiplier), new Keyframe(1.0f, 10 * speedMultiplier));
+        speed = new AnimationCurve(new Keyframe(0, 1 * speedMultiplier), new Keyframe(0.05f, 1 * speedMultiplier), new Keyframe(0.25f, 3 * speedMultiplier), new Keyframe(0.5f, 5 * speedMultiplier), new Keyframe(0.75f, 7 * speedMultiplier), new Keyframe(1.0f, 10 * speedMultiplier));
         transform.position += _direction * speed.Evaluate(percentKilled) * Time.deltaTime;
         Vector3 leftBorderPosition = leftBorder.transform.position;
         Vector3 rightBorderPosition = rightBorder.transform.position;
@@ -52,8 +52,7 @@ public class InvadersGriid : MonoBehaviour
             else if (_direction == Vector3.left && invaders.position.x <= (leftBorderPosition.x + 3.0f)) MoveGrid();
         }
         
-        Debug.Log(PlayerPrefs.GetInt("TopScore"));
-        Debug.Log(Score.scoreValue);
+
     }
 
     private void MoveGrid()
@@ -111,6 +110,7 @@ public class InvadersGriid : MonoBehaviour
 
     IEnumerator startNewWave()
     {
+        endWave = true;
         congratText.SetActive(true);
         yield return new WaitForSeconds(2);
         congratText.SetActive(false);
@@ -123,6 +123,6 @@ public class InvadersGriid : MonoBehaviour
         transform.position = startPosition;
         amountKilled = 0;
         InitiateWave();
-        endWave = true;
+        
     }
 }

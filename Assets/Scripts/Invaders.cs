@@ -40,7 +40,11 @@ public class Invaders : MonoBehaviour
             InvokeRepeating("showDeathSprite", 0.001f, 0.001f);
             _spriteBoxCollider.enabled = false;
             StartCoroutine(killInvader());
-            
+
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("BottomBorder"))
+        {
+            Player.isDead = true;
         }
 
 
