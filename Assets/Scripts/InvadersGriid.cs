@@ -19,7 +19,7 @@ public class InvadersGriid : MonoBehaviour
     [SerializeField] private float missileAttackRate = 1.0f;
     [SerializeField] private GameObject congratText;
     [SerializeField] private GameObject newWaveText;
-    public float speedMultiplier = 2f;
+    public float speedMultiplier = 1f;
 
     private Vector3 _direction = Vector2.right;
     private Vector3 startPosition = new Vector3(0, 40, 0);
@@ -32,12 +32,13 @@ public class InvadersGriid : MonoBehaviour
     void Start()
     {
         InitiateWave();
-
+        
         InvokeRepeating("MissileAttack", missileAttackRate, missileAttackRate);
     }
 
     private void Update()
     {
+        speed = new AnimationCurve(new Keyframe(0, 1 * speedMultiplier), new Keyframe(0.25f, 3 * speedMultiplier), new Keyframe(0.5f, 5 * speedMultiplier), new Keyframe(0.75f, 7 * speedMultiplier), new Keyframe(1.0f, 10 * speedMultiplier));
         transform.position += _direction * speed.Evaluate(percentKilled) * Time.deltaTime;
         Vector3 leftBorderPosition = leftBorder.transform.position;
         Vector3 rightBorderPosition = rightBorder.transform.position;
@@ -50,7 +51,7 @@ public class InvadersGriid : MonoBehaviour
             else if (_direction == Vector3.left && invaders.position.x <= (leftBorderPosition.x + 3.0f)) MoveGrid();
         }
         
-        Debug.Log(amountKilled);
+        Debug.Log(percentKilled);
         Debug.Log(amountAlive);
     }
 
@@ -70,14 +71,9 @@ public class InvadersGriid : MonoBehaviour
         if (amountKilled >= totalInvaders)
         {
             
-            speedMultiplier += 2;
+            speedMultiplier +=0.2f;
             StartCoroutine("startNewWave");
 
-            speed.Evaluate(percentKilled * speedMultiplier);
-            
-
-            StartCoroutine("startNewWave");
-            
         }
     }
 

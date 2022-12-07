@@ -2128,21 +2128,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 10
-      inSlope: 22.012594
-      outSlope: 22.012594
+      time: 0.2541443
+      value: 11.203067
+      inSlope: 114.187096
+      outSlope: 114.187096
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.037500024
+      inWeight: 0.03750003
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   gridMovingDistance: 1
   missileAttackRate: 1
-  congratText: {fileID: 0}
-  newWaveText: {fileID: 0}
+  congratText: {fileID: 1054349067}
+  newWaveText: {fileID: 151345325}
+  speedMultiplier: 1
 --- !u!4 &1202159552
 Transform:
   m_ObjectHideFlags: 0
