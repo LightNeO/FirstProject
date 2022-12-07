@@ -5,16 +5,22 @@ using UnityEngine;
 public class MisteryShipSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject misteryShip;
-    // Start is called before the first frame update
+    private int StartDelay = 15;
+    private int SpawnDelay = 30;
     void Start()
     {
-        InvokeRepeating("SpawnMisteryShip", 10, 30);
+        InvokeRepeating("SpawnMisteryShip", StartDelay ,SpawnDelay);
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (InvadersGriid.endWave == true)
+        {
+            CancelInvoke();
+            InvadersGriid.endWave = false;
+            InvokeRepeating("SpawnMisteryShip", StartDelay, SpawnDelay);
+        }
     }
 
     private void SpawnMisteryShip()

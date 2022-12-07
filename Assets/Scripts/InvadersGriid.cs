@@ -20,6 +20,7 @@ public class InvadersGriid : MonoBehaviour
     [SerializeField] private GameObject congratText;
     [SerializeField] private GameObject newWaveText;
     public float speedMultiplier = 1f;
+    public static bool endWave = false;
 
     private Vector3 _direction = Vector2.right;
     private Vector3 startPosition = new Vector3(0, 40, 0);
@@ -69,10 +70,8 @@ public class InvadersGriid : MonoBehaviour
 
         if (amountKilled >= totalInvaders)
         {
-            
             speedMultiplier +=0.2f;
             StartCoroutine("startNewWave");
-
         }
     }
 
@@ -124,5 +123,6 @@ public class InvadersGriid : MonoBehaviour
         transform.position = startPosition;
         amountKilled = 0;
         InitiateWave();
+        endWave = true;
     }
 }
