@@ -8,15 +8,17 @@ public class GameOverMenu : MonoBehaviour
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
-    [SerializeField] private Button _exitButton;
+    [SerializeField] private Button _continueWithAdButton;
     [SerializeField] private GameObject _gameOverMenu;
+    [SerializeField] private Player _player;
+
     void Start()
     {
         _restartButton.onClick.AddListener(RestartGame);
         _mainMenuButton.onClick.AddListener(OpenMainMenu);
-        _exitButton.onClick.AddListener(ExitGame);
-    }
+        _continueWithAdButton.onClick.AddListener(ContinueWithAd);
 
+    }
 
     private void RestartGame()
     {
@@ -38,8 +40,9 @@ public class GameOverMenu : MonoBehaviour
 
     }
 
-    private void ExitGame()
+    private void ContinueWithAd()
     {
-        Application.Quit();
+        //method for Ad displaying
+        _player.ResurrctPlayer();
     }
 }

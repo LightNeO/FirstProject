@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,18 +11,21 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject[] buttonsPrefabs;
     [SerializeField] GameObject[] livesPrefabs;
     [SerializeField] private GameObject _gameOverMenu;
-    [SerializeField] private int lives = 3;
+    public static int lives = 3;
+    [SerializeField] private Joystick _joystick;
+    [SerializeField] private Button _shootButton;
     private bool _laserActive;
     private int maxDistance = 32;
 
     public Sprite[] playerSprites;
-    private int frameNumber;
+    public static int frameNumber;
     private SpriteRenderer _spriteRenderer;
     public static bool isDead = false;
 
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _shootButton.onClick.AddListener(Shoot);
         lives = 3;
 
     }
@@ -57,7 +61,7 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = _joystick.Horizontal;
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0);
         float magnitude = Mathf.Clamp01(movementDirection.magnitude);
@@ -115,20 +119,35 @@ public class Player : MonoBehaviour
             killPlayer();
         }
     }
+    private void changeSprite() 
+    {
+        _spriteRenderer.sprite = playerSprites[frameNumber];
+    }
 
     private void killPlayer()
     {
         lives = 0;
         livesPrefabs[0].SetActive(false);
-
         frameNumber = 1;
-
-        _spriteRenderer.sprite = playerSprites[frameNumber];
+        changeSprite();
 
         speed = 0;
         isDead = true;
         Time.timeScale = 0;
         _gameOverMenu.SetActive(true);
+    }
+
+    public void ResurrctPlayer()
+    {
+        isDead = false;
+        lives = 1;
+        Time.timeScale = 1;
+        _gameOverMenu.SetActive(false);
+        frameNumber = 0;
+        changeSprite();
+        livesPrefabs[0].SetActive(true);
+        speed = 20;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
