@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject[] joystickPrefabs;
     [SerializeField] GameObject[] buttonsPrefabs;
     [SerializeField] GameObject[] livesPrefabs;
+    [SerializeField] private GameObject _gameOverMenu;
     [SerializeField] private int lives = 3;
     private bool _laserActive;
     private int maxDistance = 32;
@@ -127,6 +128,7 @@ public class Player : MonoBehaviour
         speed = 0;
         isDead = true;
         Time.timeScale = 0;
+        _gameOverMenu.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

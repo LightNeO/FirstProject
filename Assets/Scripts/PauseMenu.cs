@@ -16,16 +16,12 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         _continueButton.onClick.AddListener(ContinueGame);
-        _mainMenuButton.onClick.AddListener(GoToMainMenu);
+        _mainMenuButton.onClick.AddListener(OpenMainMenu);
         _exitButtonFirst.onClick.AddListener(ExitGame);
         _exitButtonSecond.onClick.AddListener(ExitGame);
         _pauseButton.onClick.AddListener(PauseGame);
     }
 
-    void Update()
-    {
-
-    }
     private void PauseGame()
     {
         if (!isOpened)
@@ -48,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
-    private void GoToMainMenu()
+    private void OpenMainMenu()
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
