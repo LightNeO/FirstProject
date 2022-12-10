@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Joystick _joystick;
     [SerializeField] private Button _shootButton;
     private bool _laserActive;
-    private int maxDistance = 32;
+    private int maxDistance = 28;
 
     public Sprite[] playerSprites;
     public static int frameNumber;
