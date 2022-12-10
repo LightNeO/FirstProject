@@ -45,6 +45,7 @@ public class Invaders : MonoBehaviour
         else if (collision.gameObject.layer == LayerMask.NameToLayer("BottomBorder"))
         {
             Player.isDead = true;
+            Destroy(gameObject);
         }
 
 

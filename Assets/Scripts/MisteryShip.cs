@@ -6,13 +6,8 @@ public class MisteryShip : MonoBehaviour
 {
     [SerializeField] private float speed = 30.0f;
     private int maxDistancec = 34;
-    [SerializeField] Sprite deathSprite;
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] GameObject deathPrefab;
 
-    private void Start()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
     void Update()
     {
         MoveRight();
@@ -32,16 +27,10 @@ public class MisteryShip : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
             Score.scoreValue += Random.Range(150,300);
-            _spriteRenderer.sprite = deathSprite;
-
-            StartCoroutine("killMisteryShip");
-
+            Instantiate(deathPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
     }
 
-    IEnumerable killMisteryShip()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
-    }
+
 }
