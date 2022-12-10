@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public static int lives = 3;
     [SerializeField] private Joystick _joystick;
     [SerializeField] private Button _shootButton;
+    [SerializeField] private Button _shootButtonDoubled;
     private bool _laserActive;
     private int maxDistance = 28;
 
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _shootButton.onClick.AddListener(Shoot);
+        _shootButtonDoubled.onClick.AddListener(Shoot);
         lives = 3;
 
     }
